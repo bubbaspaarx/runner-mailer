@@ -1,0 +1,10 @@
+<h1>Email Center</h1>
+
+<h3>Welcome <%= @trainer.name %> - <%= @trainer.area.name %> trainer</h3>
+<p>You have <%= @trainer.runners.count %> runners that need emails</p>
+
+<ol>
+<% @trainer.runners.each do |runner| %>
+<li><%= runner.name %> - <%= runner.status %> - <% runner.preferences.each do |p| %> <%= p.preference %>, <% end %></li>
+<% end %>
+</ol>

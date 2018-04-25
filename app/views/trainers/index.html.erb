@@ -1,0 +1,9 @@
+<h1>Welcome Trainers</h1>
+
+<h5>Click trainer to send emails</h5>
+<% Trainer.all.each do |trainer| %>
+
+<div class="btn btn-success">
+  <%= link_to "#{trainer.name}", trainer_path(trainer) %>
+</div>
+<% end %>
