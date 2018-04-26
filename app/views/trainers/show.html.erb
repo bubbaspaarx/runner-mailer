@@ -1,14 +1,22 @@
-<h1>Email Center</h1>
+<%= link_to "Back", trainers_path, class: 'back-btn btn btn-warning' %>
 
-<h3>Welcome <%= @trainer.name %> - <%= @trainer.area.name %> trainer</h3>
-<p>You have <%= @trainer.runners.count %> runners that need emails</p>
+<div class="container">
+  <div class="row">
+    <div class="main-trainers col-xs-6 col-xs-offset-3" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://images.unsplash.com/photo-1456894332557-b03dc5cf60d5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b400bcfc546a7a2603ee3cc30891d1cf&auto=format&fit=crop&w=2689&q=80');">
+      <h1>Email Center</h1>
 
-<ol>
-<% @trainer.runners.each do |runner| %>
-  <% if runner.last_email < -7.days.from_now  %>
-    <li><%= runner.name %> - <%= runner.status %> - <% runner.preferences.each do |p| %> <%= p.preference %>, <% end %></li>
-    <%= link_to 'Send email', send_mail_path(runner), class: 'btn btn-success' %>
-    <% end %>
-<% end %>
-</ol>
+      <h3>Welcome <%= @trainer.name %> - <%= @trainer.area.name %> trainer</h3>
+      <% runners = @trainer.runners.reject { |runner| runner.last_email > -7.days.from_now } %>
+      <p>You have <%= runners.count %> runners that need emailing</p>
 
+      <ol class="list">
+        <% @trainer.runners.each do |runner| %>
+        <% if runner.last_email < -7.days.from_now  %>
+        <li><%= runner.name %> - <%= runner.status %> - <% runner.preferences.each do |p| %> <%= p.preference %>, <% end %> <%= runner.last_email %> <%= link_to 'Send email', send_mail_path(runner), class: 'btn btn-success runner-btn' %></li>
+
+        <% end %>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</div>

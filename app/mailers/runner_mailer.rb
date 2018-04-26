@@ -6,8 +6,9 @@ class RunnerMailer < ApplicationMailer
   #   en.runner_mailer.weekly_digest.subject
   #
   def runnermail(runner)
-    raise
     status = runner.status
+    runner.last_email = Date.today
+    runner.save!
     subject = ""
     if status == "regular"
       subject = "Here's what we've been up to this week"

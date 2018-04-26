@@ -1,9 +1,16 @@
-<h1>Welcome Trainers</h1>
+<%= link_to "Back", root_path, class: 'back-btn btn btn-warning' %>
+<div class="container">
+  <div class="row">
+    <div class="main-trainers col-xs-6 col-xs-offset-3" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://images.unsplash.com/photo-1456894332557-b03dc5cf60d5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b400bcfc546a7a2603ee3cc30891d1cf&auto=format&fit=crop&w=2689&q=80');">
+      <h1>Welcome Trainers</h1>
 
-<h5>Click trainer to send emails</h5>
-<% Trainer.all.each do |trainer| %>
+      <h5>Open your trainer email portal</h5>
+      <div class="buttons">
+        <% Trainer.all.each do |trainer| %>
 
-<div class="btn btn-success">
-  <%= link_to "#{trainer.name}", trainer_path(trainer) %>
+        <%= link_to "#{trainer.name}", trainer_path(trainer), class: "btn btn-success trainer-btn" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-<% end %>
