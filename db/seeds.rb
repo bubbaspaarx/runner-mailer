@@ -47,21 +47,20 @@ puts "creating runners and adding to trainers"
 
 allTrainers.each do |t|
   area = Area.all.sample
-  puts "hello"
   5.times do
-    date = Faker::Date.between(-3.days.from_now, -50.days.from_now)
+    name = Faker::Name.first_name
     runner = Runner.new({
-      name: Faker::Name.first_name,
+      name: name,
       status: status.sample,
       active: active.sample,
-      last_activity: date
+      email: Faker::Internet.email(name),
+      last_email: Faker::Date.between(-8.days.from_now, -50.days.from_now)
       })
     runner.trainer = t
     runner.area = t.area
     runner.save!
     rand(1..2).times do
       preferences = Preference.all.reject { |pref| runner.preferences.include?(pref) }
-      puts preferences
       pref = RunnerPref.new
       pref.runner = runner
       pref.preference = preferences.sample

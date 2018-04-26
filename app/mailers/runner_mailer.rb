@@ -5,10 +5,18 @@ class RunnerMailer < ApplicationMailer
   #
   #   en.runner_mailer.weekly_digest.subject
   #
-  def weekly_digest(runner)
-    @runner = runner
-    if @runner.status == "lapsed"
-      mail(to: @runner.email, subject: "It's been a while" )
+  def runnermail(runner)
+    raise
+    status = runner.status
+    subject = ""
+    if status == "regular"
+      subject = "Here's what we've been up to this week"
+    elsif status == "lapsed"
+      subject = "It's been a while"
+    else
+      subject = "Make your first step into GoodGym"
     end
+    @runner = runner
+    mail(to: @runner.email, subject: subject, template_name: status )
   end
 end

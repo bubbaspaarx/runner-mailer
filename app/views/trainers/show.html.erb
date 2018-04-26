@@ -5,6 +5,10 @@
 
 <ol>
 <% @trainer.runners.each do |runner| %>
-<li><%= runner.name %> - <%= runner.status %> - <% runner.preferences.each do |p| %> <%= p.preference %>, <% end %></li>
+  <% if runner.last_email < -7.days.from_now  %>
+    <li><%= runner.name %> - <%= runner.status %> - <% runner.preferences.each do |p| %> <%= p.preference %>, <% end %></li>
+    <%= link_to 'Send email', send_mail_path(runner), class: 'btn btn-success' %>
+    <% end %>
 <% end %>
 </ol>
+
