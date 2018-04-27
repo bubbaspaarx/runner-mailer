@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'faker'
 gem "letter_opener", group: :development
+gem 'letter_opener_web'
 
 
 group :development, :test do
