@@ -1,4 +1,4 @@
 class Trainer < ApplicationRecord
   belongs_to :area
-  has_many :runners
+  has_many :runners, dependent: :destroy
 end
